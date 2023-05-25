@@ -1,1 +1,13 @@
 /*  your css code here. If applicable */
+#submit {
+    width: 100%;
+    padding: 10px;
+    background-color: purple;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#submit:hover {
+    background-color: #8a2be2;
+}
