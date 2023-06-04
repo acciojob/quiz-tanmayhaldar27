@@ -1,151 +1,38 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="styles.css" />
     <title>Quiz App</title>
-    <style>
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .quiz-container {
-            margin: 20px;
-        }
-        #question {
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        #submit {
-            width: 100%;
-            padding: 10px;
-            background-color: purple;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
-        #submit:hover {
-            background-color: #8a2be2;
-        }
-    </style>
-    <script>
-        var questions = [
-            {
-                question: "Which language runs in a web browser?",
-                a: "Java",
-                b: "C",
-                c: "Python",
-                d: "JavaScript",
-                correct: "d",
-            },
-            {
-                question: "What does CSS stand for?",
-                a: "Central Style Sheets",
-                b: "Cascading Style Sheets",
-                c: "Cascading Simple Sheets",
-                d: "Cars SUVs Sailboats",
-                correct: "b",
-            },
-            {
-                question: "What does HTML stand for?",
-                a: "Hypertext Markup Language",
-                b: "Hypertext Markdown Language",
-                c: "Hyperloop Machine Language",
-                d: "Helicopters Terminals Motorboats Lamborginis",
-                correct: "a",
-            },
-            {
-                question: "What year was JavaScript launched?",
-                a: "1996",
-                b: "1995",
-                c: "1994",
-                d: "none of the above",
-                correct: "b",
-            }
-        ];
-
-        var currentQuestion = 0;
-        var score = 0;
-
-        function loadQuestion() {
-            var quizContainer = document.getElementById("quiz");
-            quizContainer.innerHTML = "";
-
-            var question = document.createElement("h2");
-            question.id = "question";
-            question.textContent = questions[currentQuestion].question;
-            quizContainer.appendChild(question);
-
-            var options = ["a", "b", "c", "d"];
-            options.forEach(function (option) {
-                var label = document.createElement("label");
-                var input = document.createElement("input");
-                input.type = "radio";
-                input.name = "option";
-                input.value = option;
-                input.id = option;
-                label.appendChild(input);
-                label.innerHTML += " <span id='" + option + "_text'>" + questions[currentQuestion][option] + "</span>";
-                quizContainer.appendChild(label);
-            });
-
-            var submitButton = document.createElement("button");
-            submitButton.id = "submit";
-            submitButton.textContent = "Submit";
-            submitButton.onclick = submitAnswer;
-            quizContainer.appendChild(submitButton);
-        }
-
-        function submitAnswer() {
-            var selectedOption = document.querySelector("input[name='option']:checked");
-
-            if (selectedOption) {
-                if (selectedOption.value === questions[currentQuestion].correct) {
-                    score++;
-                }
-
-                currentQuestion++;
-
-                if (currentQuestion < questions.length) {
-                    loadQuestion();
-                } else {
-                    showResult();
-                }
-            }
-        }
-
-        function showResult() {
-            var quizContainer = document.getElementById("quiz");
-            quizContainer.innerHTML = "";
-
-            var result = document.createElement("h2");
-            result.textContent = "Quiz Result: " + score + " out of " + questions.length;
-           
-quizContainer.appendChild(result);
-
-var reloadButton = document.createElement("button");
-reloadButton.textContent = "Reload Quiz";
-reloadButton.onclick = reloadQuiz;
-quizContainer.appendChild(reloadButton);
-}
-
-function reloadQuiz() {
-    currentQuestion = 0;
-    score = 0;
-    loadQuestion();
-}
-
-window.onload = loadQuestion;
-</script>
-</head>
-<body>
-    <div class="container">
-        <div class="quiz-container" id="quiz"></div>
+  </head>
+  <body>
+    <div class="quiz-container" id="quiz">
+      <div class="quiz-header">
+        <h2 id="question">Question Dummy Text</h2>
+        <ul>
+          <li>
+            <input type="radio" name="answer" id="a" class="answer">
+            <label for="a" id="a_text">Option A</label>
+          </li>
+          <li>
+            <input type="radio" name="answer" id="b" class="answer">
+            <label for="b" id="b_text">Option B</label>
+          </li>
+          <li>
+            <input type="radio" name="answer" id="c" class="answer">
+            <label for="c" id="c_text">Option C</label>
+          </li>
+          <li>
+            <input type="radio" name="answer" id="d" class="answer">
+            <label for="d" id="d_text">Option D</label>
+          </li>
+        </ul>
+      </div>
+ 
+      <button id="submit">Submit</button>
     </div>
-
-    <script type="text/javascript" src="./script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
